@@ -48,7 +48,8 @@ public class PlayerMovement : MonoBehaviour {
                 _horizontalInput * _speed, _body.velocity.y);
 
             if (isOnWall() && !isGrounded()) {
-                _body.velocity = Vector2.zero;
+                // if touching wall already, dont move towards it
+                _body.velocity = new Vector2(0, _body.velocity.y);
             }
 
             // jump when hitting space
