@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    private static readonly float WALLJUMP_COOLDOWN_MAX = 0.5f;
+
     // refs
     private Rigidbody2D     _body;
     private Animator        _anim;
     private BoxCollider2D   _boxCollider;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _wallLayer;
 
     // vars
     [SerializeField] private float _speed;
-    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private float _walljumpCooldown;
+    [SerializeField] private float _jumpPower;
+    [SerializeField] private float _walljumpXForce;
+    [SerializeField] private float _walljumpYForce;
+                     private float _horizontalInput;
 
     private void Awake() {
         // set up refs
@@ -20,41 +28,75 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Update() {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        // adjust body velocity only horizontally according to input
-        _body.velocity = new Vector2(
-            horizontalInput * _speed, _body.velocity.y);
+        _horizontalInput = Input.GetAxis("Horizontal");
 
         // turn player around when changing movement direction
-        if (horizontalInput > 0.01f) {
+        if (_horizontalInput > 0.01f) {
             transform.localScale = Vector3.one;
-        } else if (horizontalInput < -0.01f) {
+        } else if (_horizontalInput < -0.01f) {
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        // jump when hitting space only if player is on ground
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded()) {
-            Jump();
-        }
-
         // set animator params
-        _anim.SetBool("isRunning", (horizontalInput != 0));
+        _anim.SetBool("isRunning", (_horizontalInput != 0));
         _anim.SetBool("isGrounded", isGrounded());
+
+        // walljump logic
+        if (_walljumpCooldown > WALLJUMP_COOLDOWN_MAX) {
+            // adjust body velocity only horizontally according to input
+            _body.velocity = new Vector2(
+                _horizontalInput * _speed, _body.velocity.y);
+
+            if (isOnWall() && !isGrounded()) {
+                _body.velocity = Vector2.zero;
+            }
+
+            // jump when hitting space
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Jump();
+            }
+        } else {
+            _walljumpCooldown += Time.deltaTime;
+        }
     }
 
     private void Jump() {
-        _body.velocity = new Vector2(_body.velocity.x, _speed);
-        _anim.SetTrigger("Jump");
-    }
+        if (isGrounded()) {
+            // if jumping from ground, do normal jump
+            _body.velocity = new Vector2(_body.velocity.x, _jumpPower);
+            _anim.SetTrigger("Jump");
+        } else if (isOnWall() && !isGrounded()) {
+            // if doing walljump
+            // reset cooldown
+            _walljumpCooldown = 0;
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground") {
+            if (_horizontalInput == 0) {
+                // make bigger force away from wall BUT NOT up
+                _body.velocity = new Vector2(
+                    -Mathf.Sign(transform.localScale.x) * _walljumpXForce * 2,
+                    0);
+                // flip player sprite
+                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x),
+                    transform.localScale.y, transform.localScale.z);
+            } else {
+                    // make force away from wall and up
+                    _body.velocity = new Vector2(
+                        -Mathf.Sign(transform.localScale.x) * _walljumpXForce,
+                        _walljumpYForce);
+            }
         }
     }
 
     private bool isGrounded() {
         RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center,
             _boxCollider.size, 0, Vector2.down, 0.1f, _groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    private bool isOnWall() {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center,
+            _boxCollider.size, 0, new Vector2(transform.localScale.x, 0), 0.1f,
+            _wallLayer);
         return raycastHit.collider != null;
     }
 }
