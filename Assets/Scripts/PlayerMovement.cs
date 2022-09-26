@@ -10,16 +10,23 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D     _body;
     private Animator        _anim;
     private BoxCollider2D   _boxCollider;
-    [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private LayerMask _wallLayer;
+    [SerializeField]
+    private LayerMask _groundLayer;
+    [SerializeField]
+    private LayerMask _wallLayer;
 
     // vars
-    [SerializeField] private float _speed;
-    [SerializeField] private float _walljumpCooldown;
-    [SerializeField] private float _jumpPower;
-    [SerializeField] private float _walljumpXForce;
-    [SerializeField] private float _walljumpYForce;
-                     private float _horizontalInput;
+    [SerializeField]
+    private float _speed;
+    [SerializeField]
+    private float _walljumpCooldown;
+    [SerializeField]
+    private float _jumpPower;
+    [SerializeField]
+    private float _walljumpXForce;
+    [SerializeField]
+    private float _walljumpYForce;
+    private float _horizontalInput;
 
     private void Awake() {
         // set up refs
