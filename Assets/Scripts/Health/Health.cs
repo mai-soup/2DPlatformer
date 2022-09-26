@@ -34,4 +34,11 @@ public class Health : MonoBehaviour {
 
         _anim.SetTrigger("Hurt");
     }
+
+    public void RestoreHealth(float healValue) {
+        if (_isDead) return;
+
+        currentHealth = Mathf.Clamp(currentHealth + healValue,
+                        0, _startingHealth);
+    }
 }
