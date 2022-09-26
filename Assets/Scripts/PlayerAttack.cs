@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
     // consts
-    [SerializeField] private
-        //static
-        //readonly
-        float ATTACK_COOLDOWN_MAX = 0.5f;
+    private static readonly float ATTACK_COOLDOWN_MAX = 0.4f;
 
     // refs
     private Animator        _anim;
