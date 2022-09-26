@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    // consts
     private static readonly float WALLJUMP_COOLDOWN_MAX = 0.5f;
 
     // refs
@@ -99,5 +100,10 @@ public class PlayerMovement : MonoBehaviour {
             _boxCollider.size, 0, new Vector2(transform.localScale.x, 0), 0.1f,
             _wallLayer);
         return raycastHit.collider != null;
+    }
+
+    public bool canAttack() {
+        // can attack when not moving horizontally, on ground, and not on wall.
+        return _horizontalInput == 0 && isGrounded() && !isOnWall();
     }
 }
