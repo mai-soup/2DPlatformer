@@ -55,7 +55,7 @@ public class Health : MonoBehaviour {
     }
 
     private async void Invincibility() {
-        Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_PLAYER, true);
+        Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_ENEMY, true);
         // wait for duration of invincibility, then turn collisions back on
         for (int i = 0; i < _numFlashes; i++) {
             // flash player semitransparent red
@@ -67,6 +67,6 @@ public class Health : MonoBehaviour {
             // wait
             await Task.Delay(Mathf.RoundToInt(1000 * _iFramesDuration / _numFlashes / 2));
         }
-        Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_PLAYER, false);
+        Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_ENEMY, false);
     }
 }
