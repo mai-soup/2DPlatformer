@@ -2485,6 +2485,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16.86724, y: 0.36159086}
   m_EdgeRadius: 0
+--- !u!1 &448388650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4192618972670387942, guid: 23d4be1413990654c85485ae0a9d21c2, type: 3}
+  m_PrefabInstance: {fileID: 4192618972915160610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &467035625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,6 +3695,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &590706051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9143633009653959521, guid: 7d54cf99e626c564288fdae993598ccd, type: 3}
+  m_PrefabInstance: {fileID: 9143633009319507548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &597579096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5228,6 +5238,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &865432104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 530676093188615549, guid: 1b8d66340536fd3428c71412d5846242, type: 3}
+  m_PrefabInstance: {fileID: 530676093483081557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &865432105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 530676093188615548, guid: 1b8d66340536fd3428c71412d5846242, type: 3}
@@ -6503,6 +6518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1123909727}
+  - component: {fileID: 1123909728}
   m_Layer: 0
   m_Name: Room1
   m_TagString: Untagged
@@ -6535,6 +6551,21 @@ Transform:
   m_Father: {fileID: 837146820}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1123909728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123909726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1e17ec1850a65428b2aee8e4478d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemies:
+  - {fileID: 448388650}
+  - {fileID: 590706051}
 --- !u!1 &1134510825
 GameObject:
   m_ObjectHideFlags: 0
@@ -7097,6 +7128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1258055569}
+  - component: {fileID: 1258055570}
   m_Layer: 0
   m_Name: Room2
   m_TagString: Untagged
@@ -7126,6 +7158,20 @@ Transform:
   m_Father: {fileID: 837146820}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1258055570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258055568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1e17ec1850a65428b2aee8e4478d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemies:
+  - {fileID: 865432104}
 --- !u!1 &1262214303
 GameObject:
   m_ObjectHideFlags: 0

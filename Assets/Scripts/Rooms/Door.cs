@@ -15,9 +15,13 @@ public class Door : MonoBehaviour {
             if (collision.transform.position.x < transform.position.x) {
                 // player entered from left
                 _cam.MoveToNewRoom(_nextRoom);
+                _nextRoom.GetComponent<Room>().ToggleRoomEnabled(true);
+                _prevRoom.GetComponent<Room>().ToggleRoomEnabled(false);
             } else {
                 // otherwise, player entered from right
                 _cam.MoveToNewRoom(_prevRoom);
+                _nextRoom.GetComponent<Room>().ToggleRoomEnabled(false);
+                _prevRoom.GetComponent<Room>().ToggleRoomEnabled(true);
             }
         }
     }
