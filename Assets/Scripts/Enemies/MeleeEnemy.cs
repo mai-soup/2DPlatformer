@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour {
+    [Header ("Attack")]
     [SerializeField] private float _attackCooldown;
     [SerializeField] private int _damage;
+
+    [Header ("Collider")]
     [SerializeField] private BoxCollider2D _boxColl;
     [SerializeField] private LayerMask LAYER_PLAYER;
+
+    [Header ("Vision")]
     [SerializeField] private float _visionRange;
     [SerializeField] private float _colliderDistance;
     private float _cooldownTimer = Mathf.Infinity;

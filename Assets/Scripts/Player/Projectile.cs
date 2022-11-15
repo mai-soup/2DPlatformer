@@ -41,6 +41,10 @@ public class Projectile : MonoBehaviour {
         _hasHit = true;
         _boxCollider.enabled = false;
         _anim.SetTrigger("Explode");
+
+        if (collision.tag == "Enemy") {
+            collision.GetComponent<Health>().TakeDamage(1);
+        }
     }
 
     // decide if fireball goes left or right

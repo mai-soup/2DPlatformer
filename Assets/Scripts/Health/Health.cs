@@ -35,10 +35,22 @@ public class Health : MonoBehaviour {
                         0, startingHealth);
 
         if (currentHealth == 0) {
-            // we ded
+            // ded
             _anim.SetTrigger("Die");
-            // disable movement when ded
-            GetComponent<PlayerMovement>().enabled = false;
+
+            // disable player movement when we ded
+            if (GetComponent<PlayerMovement>() != null) {
+                GetComponent<PlayerMovement>().enabled = false;
+            }
+
+            // disable enemy and patrol when enemy ded
+            if (GetComponentInParent<EnemyPatrol>() != null) {
+                GetComponentInParent<EnemyPatrol>().enabled = false;
+            }
+            if (GetComponent<MeleeEnemy>() != null) {
+                GetComponent<MeleeEnemy>().enabled = false;
+            }
+
             _isDead = true;
             return;
         }
