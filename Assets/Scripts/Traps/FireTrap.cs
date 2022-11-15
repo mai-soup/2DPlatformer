@@ -11,6 +11,8 @@ public class FireTrap : MonoBehaviour {
     private float _activeTime;
     [SerializeField] private float _damage;
 
+    private Health _playerHealth;
+
     private bool _isTriggered;
     private bool _isActive;
 
@@ -23,8 +25,15 @@ public class FireTrap : MonoBehaviour {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Update() {
+        if (_playerHealth != null && _isActive) {
+            _playerHealth.TakeDamage(_damage);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
+            _playerHealth = collision.GetComponent<Health>();
             if (!_isTriggered) {
                 ActivateFiretrap();
             }
@@ -33,6 +42,12 @@ public class FireTrap : MonoBehaviour {
                 // if active - hurt player
                 collision.GetComponent<Health>().TakeDamage(1);
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.tag == "Player") {
+            _playerHealth = null;
         }
     }
 

@@ -15,6 +15,7 @@ public class Health : MonoBehaviour {
     public float startingHealth;
     public float currentHealth { get; private set; }
     private bool _isDead = false;
+    private bool _isInvincible = false;
 
     [Header ("iFrames")]
     [SerializeField]
@@ -33,7 +34,7 @@ public class Health : MonoBehaviour {
     }
 
     public void TakeDamage(float dmg) {
-        if (_isDead) return;
+        if (_isDead || _isInvincible) return;
 
         currentHealth = Mathf.Clamp(currentHealth - dmg,
                         0, startingHealth);
@@ -61,6 +62,7 @@ public class Health : MonoBehaviour {
     }
 
     private async void Invincibility() {
+        _isInvincible = true;
         Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_ENEMY, true);
         // wait for duration of invincibility, then turn collisions back on
         for (int i = 0; i < _numFlashes; i++) {
@@ -74,6 +76,7 @@ public class Health : MonoBehaviour {
             await Task.Delay(Mathf.RoundToInt(1000 * _iFramesDuration / _numFlashes / 2));
         }
         Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_ENEMY, false);
+        _isInvincible = false;
     }
 
     private void Deactivate() {
