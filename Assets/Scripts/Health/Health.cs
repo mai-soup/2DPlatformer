@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
     private SpriteRenderer  _spriteRenderer;
 
     // vars
-    public float _startingHealth { get; private set; } = 3;
+    public float startingHealth;
     public float currentHealth { get; private set; }
     private bool _isDead = false;
     [Header ("iFrames")]
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour {
 
 
     private void Awake() {
-        currentHealth = _startingHealth;
+        currentHealth = startingHealth;
         _anim = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour {
         if (_isDead) return;
 
         currentHealth = Mathf.Clamp(currentHealth - dmg,
-                        0, _startingHealth);
+                        0, startingHealth);
 
         if (currentHealth == 0) {
             // we ded
@@ -51,7 +51,7 @@ public class Health : MonoBehaviour {
         if (_isDead) return;
 
         currentHealth = Mathf.Clamp(currentHealth + healValue,
-                        0, _startingHealth);
+                        0, startingHealth);
     }
 
     private async void Invincibility() {

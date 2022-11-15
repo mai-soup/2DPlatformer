@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour {
 
     private void Start() {
         // divide by 10 to get fraction, so e.g. 3 hearts -> 0.3
-        _currentHealthBar.fillAmount = _playerHealth._startingHealth / 10;
+        _currentHealthBar.fillAmount = _playerHealth.startingHealth / 10;
     }
 
     private void Update() {
