@@ -17,9 +17,9 @@ public class EnemyProjectile : EnemyDamage {
 
     public void ActivateProjectile() {
         _hasHit = false;
-        _coll.enabled = true;
         _lifetime = 0;
         gameObject.SetActive(true);
+        _coll.enabled = true;
     }
 
     private void Update() {
