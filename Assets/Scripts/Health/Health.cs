@@ -15,11 +15,15 @@ public class Health : MonoBehaviour {
     public float startingHealth;
     public float currentHealth { get; private set; }
     private bool _isDead = false;
+
     [Header ("iFrames")]
     [SerializeField]
     private float _iFramesDuration;
     [SerializeField]
     private int _numFlashes;
+
+    [Header("Components")]
+    [SerializeField] private Behaviour[] _components;
 
 
     private void Awake() {
@@ -38,18 +42,8 @@ public class Health : MonoBehaviour {
             // ded
             _anim.SetTrigger("Die");
 
-            // disable player movement when we ded
-            if (GetComponent<PlayerMovement>() != null) {
-                GetComponent<PlayerMovement>().enabled = false;
-            }
-
-            // disable enemy and patrol when enemy ded
-            if (GetComponentInParent<EnemyPatrol>() != null) {
-                GetComponentInParent<EnemyPatrol>().enabled = false;
-            }
-            if (GetComponent<MeleeEnemy>() != null) {
-                GetComponent<MeleeEnemy>().enabled = false;
-            }
+            foreach (Behaviour component in _components)
+                component.enabled = false;
 
             _isDead = true;
             return;
