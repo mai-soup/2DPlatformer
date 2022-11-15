@@ -143,6 +143,8 @@ MonoBehaviour:
   startingHealth: 3
   _iFramesDuration: 0
   _numFlashes: 0
+  _components:
+  - {fileID: 4478533286662208563}
 --- !u!61 &4478533286662208573
 BoxCollider2D:
   m_ObjectHideFlags: 0
