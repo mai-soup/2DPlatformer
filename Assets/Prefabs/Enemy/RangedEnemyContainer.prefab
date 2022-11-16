@@ -248,6 +248,8 @@ MonoBehaviour:
   _components:
   - {fileID: 4051729541378537427}
   - {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: d45088a753da977419b36c1fa3f6382f, type: 3}
+  _hurtSound: {fileID: 8300000, guid: c7fbfb94c63d1ba49813aea061874d25, type: 3}
 --- !u!61 &4051729541378537423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -307,6 +309,7 @@ MonoBehaviour:
     m_Bits: 256
   _visionRange: 12
   _colliderDistance: 0.33
+  _fireballSound: {fileID: 8300000, guid: 38d235ae85cf4ff4db3ee985c82e6e5b, type: 3}
 --- !u!114 &3042760607487326940
 MonoBehaviour:
   m_ObjectHideFlags: 0

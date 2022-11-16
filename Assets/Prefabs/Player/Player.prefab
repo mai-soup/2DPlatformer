@@ -161,6 +161,7 @@ MonoBehaviour:
   _jumpPower: 10
   _walljumpXForce: 3
   _walljumpYForce: 10
+  _jumpSound: {fileID: 8300000, guid: 91e972710fbf54e41b3af144a92322da, type: 3}
 --- !u!114 &5882890133745900243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _fireballSound: {fileID: 8300000, guid: 38d235ae85cf4ff4db3ee985c82e6e5b, type: 3}
   _firePoint: {fileID: 5882890134019469845}
 --- !u!95 &5882890133745900242
 Animator:
@@ -224,6 +226,8 @@ MonoBehaviour:
   _components:
   - {fileID: 5882890133745900241}
   - {fileID: 5882890133745900243}
+  _deathSound: {fileID: 8300000, guid: d45088a753da977419b36c1fa3f6382f, type: 3}
+  _hurtSound: {fileID: 8300000, guid: c7fbfb94c63d1ba49813aea061874d25, type: 3}
 --- !u!1 &5882890134019469844
 GameObject:
   m_ObjectHideFlags: 0

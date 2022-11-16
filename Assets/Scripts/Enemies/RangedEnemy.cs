@@ -8,6 +8,7 @@ public class RangedEnemy : MonoBehaviour {
     [SerializeField] private int _damage;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject[] _fireballs;
+    private Health _playerHealth;
 
     [Header("Collider")]
     [SerializeField] private BoxCollider2D _boxColl;
@@ -33,7 +34,8 @@ public class RangedEnemy : MonoBehaviour {
     private void Update() {
         _cooldownTimer += Time.deltaTime;
 
-        if (PlayerInSight() && _cooldownTimer >= _attackCooldown) {
+        if (PlayerInSight() && _cooldownTimer >= _attackCooldown
+            && _playerHealth.currentHealth != 0) {
             _cooldownTimer = 0;
             _anim.SetTrigger("attackRanged");
         }
@@ -54,11 +56,11 @@ public class RangedEnemy : MonoBehaviour {
                 ),
             0, Vector2.left, 0, LAYER_PLAYER);
 
-        // if the boxcast collides with something on the player layer,
-        // the player is in sight.
-        //if (hit.collider != null) {
-            
-        //}
+        //if the boxcast collides with something on the player layer,
+        //the player is in sight.
+        if (hit.collider != null) {
+            _playerHealth = hit.transform.GetComponent<Health>();
+        }
 
         return hit.collider != null;
     }

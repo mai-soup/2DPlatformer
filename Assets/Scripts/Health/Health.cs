@@ -26,6 +26,10 @@ public class Health : MonoBehaviour {
     [Header("Components")]
     [SerializeField] private Behaviour[] _components;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private AudioClip _hurtSound;
+
 
     private void Awake() {
         currentHealth = startingHealth;
@@ -47,11 +51,13 @@ public class Health : MonoBehaviour {
                 component.enabled = false;
 
             _isDead = true;
+            SoundManager.instance.PlaySound(_deathSound);
             return;
         }
 
         _anim.SetTrigger("Hurt");
         Invincibility();
+        SoundManager.instance.PlaySound(_hurtSound);
     }
 
     public void RestoreHealth(float healValue) {

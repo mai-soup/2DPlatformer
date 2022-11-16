@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour {
     private float _walljumpYForce;
     private float _horizontalInput;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _jumpSound;
+
     private void Awake() {
         // set up refs
         _body = GetComponent<Rigidbody2D>();
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Jump() {
         if (isGrounded()) {
+            SoundManager.instance.PlaySound(_jumpSound);
             // if jumping from ground, do normal jump
             _body.velocity = new Vector2(_body.velocity.x, _jumpPower);
             _anim.SetTrigger("Jump");

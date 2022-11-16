@@ -5852,6 +5852,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1081346386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+  m_PrefabInstance: {fileID: 1341575094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082408979
 GameObject:
   m_ObjectHideFlags: 0
@@ -6293,6 +6298,7 @@ Transform:
   - {fileID: 1415114234}
   - {fileID: 2064488861}
   - {fileID: 1935683818}
+  - {fileID: 1081346386}
   m_Father: {fileID: 837146820}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7310,6 +7316,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1341575094
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1123909727}
+    m_Modifications:
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.9216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.8076177
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.016294
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208568, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478533286662208569, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
+      propertyPath: m_Name
+      value: MeleeEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdc49a6a18635d44e9818b1d908676ec, type: 3}
 --- !u!1 &1349799661
 GameObject:
   m_ObjectHideFlags: 0
@@ -10968,10 +11039,6 @@ PrefabInstance:
       propertyPath: _components.Array.data[1]
       value: 
       objectReference: {fileID: 951926432}
-    - target: {fileID: 4051729541378537427, guid: 62e3d920b204b3f4d94ed4a2bce2db77, type: 3}
-      propertyPath: _fireballSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 38d235ae85cf4ff4db3ee985c82e6e5b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e3d920b204b3f4d94ed4a2bce2db77, type: 3}
 --- !u!1001 &2515369766855041480
@@ -11113,10 +11180,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5882890133745900243, guid: 164249a3b97f1564cbe1bc17fa53d028, type: 3}
-      propertyPath: _fireballSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 38d235ae85cf4ff4db3ee985c82e6e5b, type: 3}
     - target: {fileID: 5882890133745900243, guid: 164249a3b97f1564cbe1bc17fa53d028, type: 3}
       propertyPath: _fireballs.Array.data[0]
       value: 
