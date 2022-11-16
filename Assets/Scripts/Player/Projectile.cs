@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour {
         _boxCollider.enabled = false;
         _anim.SetTrigger("Explode");
 
-        if (collision.tag == "Enemy") {
+        if (collision.tag == "Enemy" && collision.GetComponent<Health>() != null) {
             collision.GetComponent<Health>().TakeDamage(1);
         }
     }
