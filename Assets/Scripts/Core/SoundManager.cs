@@ -7,7 +7,15 @@ public class SoundManager : MonoBehaviour {
     private AudioSource _source;
 
     private void Awake() {
-        instance = this;
+        if (instance == null) {
+            instance = this;
+            // keep object through levels
+            DontDestroyOnLoad(gameObject);
+        } else if (instance != null && instance != this) {
+            // we are in a duplicate soundmgr, destroy ourselves
+            Destroy(gameObject);
+        }
+
         _source = GetComponent<AudioSource>();
     }
 
