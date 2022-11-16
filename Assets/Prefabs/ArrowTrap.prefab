@@ -61,6 +61,7 @@ MonoBehaviour:
   - {fileID: 8680502300159961405}
   - {fileID: 8680502299198956069}
   - {fileID: 8680502299340633190}
+  _shootSound: {fileID: 8300000, guid: 2e9466c9e81385c48aa2d04fa76501cc, type: 3}
 --- !u!1 &4393294218324319641
 GameObject:
   m_ObjectHideFlags: 0
