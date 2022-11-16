@@ -12,6 +12,9 @@ public class SpikeHead : EnemyDamage {
     private float _attackTimer;
     private Vector3[] _directions = new Vector3[4];
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _impactSound;
+
     private void OnEnable() {
         Stop();
     }
@@ -35,7 +38,8 @@ public class SpikeHead : EnemyDamage {
             RaycastHit2D hit = Physics2D.Raycast(transform.position,
                 _directions[i], _visionRange, LAYER_PLAYER);
 
-            if (hit.collider != null && !_isAttacking) {
+            if (hit.collider != null && !_isAttacking &&
+                hit.collider.GetComponent<Health>().currentHealth != 0) {
                 _isAttacking = true;
                 _destination = _directions[i];
                 _attackTimer = 0;
@@ -53,6 +57,7 @@ public class SpikeHead : EnemyDamage {
     private new void OnTriggerEnter2D(Collider2D collision) {
         base.OnTriggerEnter2D(collision);
         // stop when hitting something
+        SoundManager.instance.PlaySound(_impactSound);
         Stop();
     }
 

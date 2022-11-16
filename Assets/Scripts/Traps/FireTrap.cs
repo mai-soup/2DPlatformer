@@ -11,6 +11,9 @@ public class FireTrap : MonoBehaviour {
     private float _activeTime;
     [SerializeField] private float _damage;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _fireSound;
+
     private Health _playerHealth;
 
     private bool _isTriggered;
@@ -34,7 +37,7 @@ public class FireTrap : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
             _playerHealth = collision.GetComponent<Health>();
-            if (!_isTriggered) {
+            if (!_isTriggered && _playerHealth.currentHealth > 0) {
                 ActivateFiretrap();
             }
 
@@ -57,6 +60,7 @@ public class FireTrap : MonoBehaviour {
 
         // wait for the activation delay before activating
         await Task.Delay(Mathf.RoundToInt(1000 * _activationDelay));
+        SoundManager.instance.PlaySound(_fireSound);
         _isActive = true;
         _anim.SetBool("isActive", true);
 

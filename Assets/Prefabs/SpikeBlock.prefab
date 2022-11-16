@@ -153,3 +153,4 @@ MonoBehaviour:
   _speed: 0.75
   _visionRange: 12
   _attackDelay: 1
+  _impactSound: {fileID: 8300000, guid: f4f152041946f0c4caf391c5952ab568, type: 3}
