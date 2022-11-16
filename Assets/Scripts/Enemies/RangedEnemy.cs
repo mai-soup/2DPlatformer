@@ -18,6 +18,9 @@ public class RangedEnemy : MonoBehaviour {
     [SerializeField] private float _colliderDistance;
     private float _cooldownTimer = Mathf.Infinity;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _fireballSound;
+
     // refs
     private Animator _anim;
     private EnemyPatrol _enemyPatrol;
@@ -62,6 +65,7 @@ public class RangedEnemy : MonoBehaviour {
 
     private void RangedAttack() {
         _cooldownTimer = 0;
+        SoundManager.instance.PlaySound(_fireballSound);
 
         // shoot a projectile
         int f = FindFireball();

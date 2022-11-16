@@ -10968,6 +10968,10 @@ PrefabInstance:
       propertyPath: _components.Array.data[1]
       value: 
       objectReference: {fileID: 951926432}
+    - target: {fileID: 4051729541378537427, guid: 62e3d920b204b3f4d94ed4a2bce2db77, type: 3}
+      propertyPath: _fireballSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 38d235ae85cf4ff4db3ee985c82e6e5b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62e3d920b204b3f4d94ed4a2bce2db77, type: 3}
 --- !u!1001 &2515369766855041480
