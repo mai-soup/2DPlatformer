@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     private LayerMask _wallLayer;
 
     // vars
+    [Header("Movement")]
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -27,6 +28,10 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float _walljumpYForce;
     private float _horizontalInput;
+
+    [Header("Coyote Time")]
+    [SerializeField] private float _coyoteTime;
+    private float _coyoteCountdown;
 
     [Header("Sound")]
     [SerializeField] private AudioClip _jumpSound;
@@ -52,52 +57,96 @@ public class PlayerMovement : MonoBehaviour {
         _anim.SetBool("isRunning", (_horizontalInput != 0));
         _anim.SetBool("isGrounded", isGrounded());
 
-        // walljump logic
-        if (_walljumpCooldown > WALLJUMP_COOLDOWN_MAX) {
-            // adjust body velocity only horizontally according to input
-            _body.velocity = new Vector2(
-                _horizontalInput * _speed, _body.velocity.y);
-
-            if (isOnWall() && !isGrounded()) {
-                // if touching wall already, dont move towards it
-                _body.velocity = new Vector2(0, _body.velocity.y);
-            }
-
-            // jump when hitting space
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Jump();
-            }
-        } else {
-            _walljumpCooldown += Time.deltaTime;
+        // jump when hitting space
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Jump();
         }
+
+        // adjustable jump height depending on hold length
+        if (Input.GetKeyUp(KeyCode.Space) && _body.velocity.y > 0) {
+            _body.velocity = new Vector2(
+                _body.velocity.x,
+                _body.velocity.y / 2);
+        }
+
+        if (isOnWall()) {
+            _body.gravityScale = 0f;
+            _body.velocity = Vector2.zero;
+        } else {
+            _body.gravityScale = 5.0f;
+            _body.velocity = new Vector2(
+                _horizontalInput * _speed,
+                _body.velocity.y);
+
+            if (isGrounded()) {
+                // reset coyote countdown
+                _coyoteCountdown = _coyoteTime;
+            } else {
+                _coyoteCountdown -= Time.deltaTime;
+            }
+        }
+
+        //// walljump logic
+        //if (_walljumpCooldown > WALLJUMP_COOLDOWN_MAX) {
+        //    // adjust body velocity only horizontally according to input
+        //    _body.velocity = new Vector2(
+        //        _horizontalInput * _speed, _body.velocity.y);
+
+        //    if (isOnWall() && !isGrounded()) {
+        //        // if touching wall already, dont move towards it
+        //        _body.velocity = new Vector2(0, _body.velocity.y);
+        //    }
+
+        //    // jump when hitting space
+        //    if (Input.GetKeyDown(KeyCode.Space)) {
+        //        Jump();
+        //    }
+        //} else {
+        //    _walljumpCooldown += Time.deltaTime;
+        //}
     }
 
     private void Jump() {
-        if (isGrounded()) {
-            SoundManager.instance.PlaySound(_jumpSound);
-            // if jumping from ground, do normal jump
-            _body.velocity = new Vector2(_body.velocity.x, _jumpPower);
-            _anim.SetTrigger("Jump");
-        } else if (isOnWall() && !isGrounded()) {
-            // if doing walljump
-            // reset cooldown
-            _walljumpCooldown = 0;
+        if (_coyoteCountdown <= 0 && !isOnWall())
+            return;
 
-            if (_horizontalInput == 0) {
-                // make bigger force away from wall BUT NOT up
-                _body.velocity = new Vector2(
-                    -Mathf.Sign(transform.localScale.x) * _walljumpXForce * 2,
-                    0);
-                // flip player sprite
-                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x),
-                    transform.localScale.y, transform.localScale.z);
-            } else {
-                    // make force away from wall and up
-                    _body.velocity = new Vector2(
-                        -Mathf.Sign(transform.localScale.x) * _walljumpXForce,
-                        _walljumpYForce);
-            }
-        }
+        SoundManager.instance.PlaySound(_jumpSound);
+
+        if (isOnWall())
+            WallJump();
+        else if (isGrounded() || _coyoteCountdown > 0)
+            _body.velocity = new Vector2(_body.velocity.x, _jumpPower);
+
+        _coyoteCountdown = 0;
+
+        //if (isGrounded()) {
+        //    SoundManager.instance.PlaySound(_jumpSound);
+        //    // if jumping from ground, do normal jump
+        //    _body.velocity = new Vector2(_body.velocity.x, _jumpPower);
+        //} else if (isOnWall() && !isGrounded()) {
+        //    // if doing walljump
+        //    // reset cooldown
+        //    _walljumpCooldown = 0;
+
+        //    if (_horizontalInput == 0) {
+        //        // make bigger force away from wall BUT NOT up
+        //        _body.velocity = new Vector2(
+        //            -Mathf.Sign(transform.localScale.x) * _walljumpXForce * 2,
+        //            0);
+        //        // flip player sprite
+        //        transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x),
+        //            transform.localScale.y, transform.localScale.z);
+        //    } else {
+        //            // make force away from wall and up
+        //            _body.velocity = new Vector2(
+        //                -Mathf.Sign(transform.localScale.x) * _walljumpXForce,
+        //                _walljumpYForce);
+        //    }
+        //}
+    }
+
+    private void WallJump() {
+
     }
 
     private bool isGrounded() {

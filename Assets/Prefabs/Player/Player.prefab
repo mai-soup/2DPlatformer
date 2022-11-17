@@ -158,9 +158,10 @@ MonoBehaviour:
     m_Bits: 128
   _speed: 10
   _walljumpCooldown: 0.5
-  _jumpPower: 10
+  _jumpPower: 16
   _walljumpXForce: 3
   _walljumpYForce: 10
+  _coyoteTime: 0.25
   _jumpSound: {fileID: 8300000, guid: 91e972710fbf54e41b3af144a92322da, type: 3}
 --- !u!114 &5882890133745900243
 MonoBehaviour:
