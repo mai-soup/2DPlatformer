@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5882890133745900243}
   - component: {fileID: 5882890133745900242}
   - component: {fileID: 5882890133745900244}
+  - component: {fileID: 1493649247986520791}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -153,14 +154,8 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _wallLayer:
-    serializedVersion: 2
-    m_Bits: 128
   _speed: 10
-  _walljumpCooldown: 0.5
   _jumpPower: 16
-  _walljumpXForce: 3
-  _walljumpYForce: 10
   _coyoteTime: 0.25
   _jumpSound: {fileID: 8300000, guid: 91e972710fbf54e41b3af144a92322da, type: 3}
 --- !u!114 &5882890133745900243
@@ -229,6 +224,19 @@ MonoBehaviour:
   - {fileID: 5882890133745900243}
   _deathSound: {fileID: 8300000, guid: d45088a753da977419b36c1fa3f6382f, type: 3}
   _hurtSound: {fileID: 8300000, guid: c7fbfb94c63d1ba49813aea061874d25, type: 3}
+--- !u!114 &1493649247986520791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5882890133745900252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf4dcd134d3fac4ca3fe7d159db3d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _checkpointSound: {fileID: 8300000, guid: 965ca850a7d655c41bbbfc4334a4af12, type: 3}
 --- !u!1 &5882890134019469844
 GameObject:
   m_ObjectHideFlags: 0

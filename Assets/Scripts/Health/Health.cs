@@ -68,6 +68,17 @@ public class Health : MonoBehaviour {
                         0, startingHealth);
     }
 
+    public void Respawn() {
+        _isDead = false;
+        RestoreHealth(startingHealth);
+        _anim.ResetTrigger("Die");
+        _anim.Play("player_idle");
+        Invincibility();
+
+        foreach (Behaviour component in _components)
+            component.enabled = true;
+    }
+
     private async void Invincibility() {
         _isInvincible = true;
         Physics2D.IgnoreLayerCollision(LAYER_PLAYER, LAYER_ENEMY, true);
